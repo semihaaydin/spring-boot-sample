@@ -1,8 +1,8 @@
 package com.springbootsample;
 
 
-import com.springbootsample.entity.User;
-import com.springbootsample.repository.UserRepository;
+import com.springbootsample.entity.Kisi;
+import com.springbootsample.repository.KisiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,26 +12,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/kullanici")
-public class UserApi {
+public class KisiApi {
     @Autowired
-    private UserRepository userRepository;
+    private KisiRepository userRepository;
 
     @PostConstruct
     public void init(){
-        User user=new User();
+        Kisi user=new Kisi();
         user.setId("1");
-        user.setFirstName("Semiha");
-        user.setLastName("Aydin");
+        user.setAd("Semiha");
+        user.setSoyad("Aydin");
         userRepository.save(user);
     }
 
     @PostMapping
-    public ResponseEntity<User> add(@RequestBody User user){
+    public ResponseEntity<Kisi> add(@RequestBody Kisi user){
         return ResponseEntity.ok(userRepository.save(user));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllList(){
+    public ResponseEntity<List<Kisi>> getAllList(){
         return ResponseEntity.ok(userRepository.findAll());
     }
 }
